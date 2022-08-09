@@ -1,8 +1,12 @@
-import re
+import os, re
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import time
+
+
+start_time = time.time()
+print("--- %s seconds ---" % (time.time() - start_time))
 
 # https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney
 
@@ -15,6 +19,7 @@ headers = {
 
 current_date = time.strftime("%m/%d/%Y")
 
+
 # Get URLs from base site
 r = requests.get(f'https://www.thewhiskyexchange.com/brands/worldwhisky')
 soup = BeautifulSoup(r.content, 'lxml')
@@ -23,7 +28,7 @@ source_dict = {}
 print('Aggregating Whiskeys from the following countries...')
 print(list(item.text.strip() for item in producers_item))  # list of whiskey countries
 
-for item in producers_item:
+for item in producers_item[:1]:
     country = item.text.strip()  # country
     for link in item.find_all('a', href=True):
         source = baseurl+link['href']
@@ -132,11 +137,18 @@ for u in bottle_urls:
     print("Saving ", whisky['name'])
 
 df = pd.DataFrame(whiskey_list)
-df.to_csv('whiskey_list.csv')
-print(df.shape)
+# df.to_csv('whiskey_list.csv')
+print("file size prior to de-dupe ", df.shape)
 df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv'], inplace=True)
-print(df.shape)
+print("file size after de-dupe ", df.shape)
 
+filename = "output/whiskey_list.csv"
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+with open(filename, "w") as f:
+    # f.write(df)
+    df.to_csv(f)
+
+print("--- %s seconds runtime ---" % (time.time() - start_time))
 
 # Go to world of whiskeys
 # Grab the different countries of the world
@@ -158,3 +170,5 @@ print(df.shape)
 # TODO Edd exception clause to git rid of too broad exception issues
 # TODO Add logic to output data to a specific location
 # TODO Add logic to include Country and Brand to Whiskey List
+# TODO Add parameters file
+# TODO add start, end, and total runtime
