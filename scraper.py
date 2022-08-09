@@ -154,6 +154,6 @@ print(df.shape)
 # https://www.thewhiskyexchange.com/brands/worldwhisky/305/rest-of-the-world-whisky REST OF WORLD
 
 # TODO include mode to try a limited run
-# Add more commenting
-# Edd exception clause to git rid of too broad exception issues
-# Add logic to output data to a specific location
+# TODO Add more commenting
+# TODO Edd exception clause to git rid of too broad exception issues
+# TODO Add logic to output data to a specific location
