@@ -3,10 +3,9 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import time
-
+from input_file.parameters import *
 
 start_time = time.time()
-print("--- %s seconds ---" % (time.time() - start_time))
 
 # https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney
 
@@ -18,6 +17,7 @@ headers = {
 }
 
 current_date = time.strftime("%m/%d/%Y")
+current_date_time = time.strftime("%m_%d_%Y_%H_%M")
 
 
 # Get URLs from base site
@@ -80,7 +80,7 @@ for u in bottle_urls:
 
     try:
         if soup.find(class_='flavour-profile__group flavour-profile__group--character') == str("None"):
-            list_of_flavors = "None"
+            list_of_flavors = empty_string
         else:
             list_of_flavors = soup.find(class_='flavour-profile__group flavour-profile__group--character').text \
                 .split("\n")
@@ -88,7 +88,7 @@ for u in bottle_urls:
                 list_of_flavors.remove("Character")
                 list_of_flavors = list(filter(None, list_of_flavors))
     except:
-        list_of_flavors = "None"
+        list_of_flavors = empty_string
 
     try:
         style_list = soup.find(class_='flavour-profile__group flavour-profile__group--style').text.split("\n")
@@ -97,7 +97,7 @@ for u in bottle_urls:
             style_list = list(filter(None, style_list))
 
     except:
-        style_list = "None"
+        style_list = empty_string
 
 
     try:
@@ -105,19 +105,19 @@ for u in bottle_urls:
         avg_rating = re.findall(r"(\d\.*\d*)", rating_str)[0]
 
     except:
-        avg_rating = "no rating"
+        avg_rating = empty_string
 
     try:
         num_rating_str = soup.find('p', class_="review-overview__content").text.strip()
         num_rating = re.findall(r"(\d\.*\d*)", num_rating_str)[1]
 
     except:
-        num_rating = "no rating"
+        num_rating = empty_string
 
     try:
         subtitle = soup.find('ul', class_="product-main__meta").text.strip()
     except:
-        subtitle = "No subtitle"
+        subtitle = empty_string
 
     whisky = {
         'name': name,
@@ -141,11 +141,12 @@ print("file size prior to de-dupe ", df.shape)
 df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv'], inplace=True)
 print("file size after de-dupe ", df.shape)
 
-filename = "output/whiskey_list.csv"
+filename = f"output/{current_date_time}/whiskey_list.csv"
 os.makedirs(os.path.dirname(filename), exist_ok=True)
 with open(filename, "w") as f:
     # f.write(df)
     df.to_csv(f)
+    print(f"file saved to {filename}")
 
 print("--- %s seconds runtime ---" % (time.time() - start_time))
 
