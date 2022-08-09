@@ -137,7 +137,6 @@ for u in bottle_urls:
     print("Saving ", whisky['name'])
 
 df = pd.DataFrame(whiskey_list)
-# df.to_csv('whiskey_list.csv')
 print("file size prior to de-dupe ", df.shape)
 df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv'], inplace=True)
 print("file size after de-dupe ", df.shape)
@@ -150,14 +149,6 @@ with open(filename, "w") as f:
 
 print("--- %s seconds runtime ---" % (time.time() - start_time))
 
-# Go to world of whiskeys
-# Grab the different countries of the world
-# Click into each country and get the a-z list
-# Click each label to get its list of bottles, if necessary
-# If multiple, get each  of  those links, click them
-# if single, get that link, and click it
-# Go to that link and record all necessary bottle info
-
 # https://www.thewhiskyexchange.com/brands/worldwhisky
 # https://www.thewhiskyexchange.com/brands/worldwhisky/32/irish-whiskey IRISH WHISKEY
 # https://www.thewhiskyexchange.com/brands/worldwhisky/33/american-whiskey AMERICAN WHISKEY
@@ -166,9 +157,7 @@ print("--- %s seconds runtime ---" % (time.time() - start_time))
 # https://www.thewhiskyexchange.com/brands/worldwhisky/305/rest-of-the-world-whisky REST OF WORLD
 
 # TODO include mode to try a limited run
-# TODO Add more commenting
-# TODO Edd exception clause to git rid of too broad exception issues
-# TODO Add logic to output data to a specific location
+# TODO More commenting
+# TODO Exception clause to git rid of too broad exception issues
 # TODO Add logic to include Country and Brand to Whiskey List
 # TODO Add parameters file
-# TODO add start, end, and total runtime
