@@ -49,7 +49,7 @@ for v in source_dict.values():
             brand = link_2.text.strip()
             specific_link = baseurl+link_2['href']
             brand_urls.append(baseurl + link_2['href'])
-print(len(brand_urls))
+print(f"{len(brand_urls)} brands of whiskey")
 
 bottle_urls = []
 for brand in brand_urls:
@@ -61,8 +61,8 @@ for brand in brand_urls:
         for b2 in bottle_list:
             # print(baseurl+b2['href']) # url to get to individual bottle
             bottle_urls.append(baseurl+b2['href'])
-print(len(bottle_urls))
-whiskylist = []
+print(f"{len(bottle_urls)} number of bottles")
+whiskey_list = []
 for u in bottle_urls:
     r = requests.get(u, headers=headers)
     soup = BeautifulSoup(r.content, 'lxml')
@@ -128,11 +128,11 @@ for u in bottle_urls:
         'current_date': current_date,
         'product_link': productlink
     }
-    whiskylist.append(whisky)
+    whiskey_list.append(whisky)
     print("Saving ", whisky['name'])
 
-df = pd.DataFrame(whiskylist)
-df.to_csv('whiskylist.csv')
+df = pd.DataFrame(whiskey_list)
+df.to_csv('whiskey_list.csv')
 print(df.shape)
 df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv'], inplace=True)
 print(df.shape)
@@ -141,7 +141,7 @@ print(df.shape)
 # Go to world of whiskeys
 # Grab the different countries of the world
 # Click into each country and get the a-z list
-# Click each label to get it's list of bottles, if necessary
+# Click each label to get its list of bottles, if necessary
 # If multiple, get each  of  those links, click them
 # if single, get that link, and click it
 # Go to that link and record all necessary bottle info
@@ -152,9 +152,3 @@ print(df.shape)
 # https://www.thewhiskyexchange.com/brands/worldwhisky/35/japanese-whisky JAPANESE WHISKEY
 # https://www.thewhiskyexchange.com/brands/worldwhisky/34/canadian-whisky CANADIAN WHISKEY
 # https://www.thewhiskyexchange.com/brands/worldwhisky/305/rest-of-the-world-whisky REST OF WORLD
-
-
-
-
-
-
