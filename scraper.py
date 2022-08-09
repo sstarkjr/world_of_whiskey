@@ -134,12 +134,17 @@ print("file size prior to de-dupe ", df.shape)
 df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv'], inplace=True)
 print("file size after de-dupe ", df.shape)
 
-filename = f"output/{current_date_time}/whiskey_list.csv"
-os.makedirs(os.path.dirname(filename), exist_ok=True)
-with open(filename, "w") as f:
-    # f.write(df)
-    df.to_csv(f)
-    print(f"file saved to {filename}")
+current_dir = f"output/{current_date_time}/"
+latest_dir = "output/latest/"
+filename = "whiskey_list.csv"
+dir_list = [str(current_dir), str(latest_dir)]
+
+for i in dir_list:
+    os.makedirs(i, exist_ok=True)
+    with open (i+filename, "w") as f:
+        df.to_csv(f)
+        print(f"file saved to {i}")
+
 
 print("--- %s seconds runtime ---" % (time.time() - start_time))
 
@@ -154,5 +159,4 @@ print("--- %s seconds runtime ---" % (time.time() - start_time))
 # TODO More commenting
 # TODO Exception clause to git rid of too broad exception issues
 # TODO Add logic to include Country and Brand to Whiskey List
-# TODO Add parameters file
 # TODO Add gitignore
