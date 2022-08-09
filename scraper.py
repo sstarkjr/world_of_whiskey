@@ -157,3 +157,4 @@ print(df.shape)
 # TODO Add more commenting
 # TODO Edd exception clause to git rid of too broad exception issues
 # TODO Add logic to output data to a specific location
+# TODO Add logic to include Country and Brand to Whiskey List
