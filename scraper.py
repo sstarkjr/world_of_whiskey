@@ -9,13 +9,6 @@ start_time = time.time()
 
 # https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney
 
-baseurl = "https://www.thewhiskyexchange.com"
-
-headers = {
-    'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) \
-    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
-}
-
 current_date = time.strftime("%m/%d/%Y")
 current_date_time = time.strftime("%m_%d_%Y_%H_%M")
 
@@ -162,3 +155,4 @@ print("--- %s seconds runtime ---" % (time.time() - start_time))
 # TODO Exception clause to git rid of too broad exception issues
 # TODO Add logic to include Country and Brand to Whiskey List
 # TODO Add parameters file
+# TODO Add gitignore
