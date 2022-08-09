@@ -152,3 +152,8 @@ print(df.shape)
 # https://www.thewhiskyexchange.com/brands/worldwhisky/35/japanese-whisky JAPANESE WHISKEY
 # https://www.thewhiskyexchange.com/brands/worldwhisky/34/canadian-whisky CANADIAN WHISKEY
 # https://www.thewhiskyexchange.com/brands/worldwhisky/305/rest-of-the-world-whisky REST OF WORLD
+
+# TODO include mode to try a limited run
+# Add more commenting
+# Edd exception clause to git rid of too broad exception issues
+# Add logic to output data to a specific location
