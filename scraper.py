@@ -3,15 +3,17 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import time
-from input_file.parameters import *
 
 start_time = time.time()
-
-# https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney
-
 current_date = time.strftime("%m/%d/%Y")
 current_date_time = time.strftime("%m_%d_%Y_%H_%M")
 
+empty_string = "None"
+baseurl = "https://www.thewhiskyexchange.com"
+headers = {
+    'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) \
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
+}
 
 # Get URLs from base site
 r = requests.get(f'https://www.thewhiskyexchange.com/brands/worldwhisky')
@@ -61,15 +63,15 @@ for brand in brand_urls:
             bottle_urls.append(baseurl+b2['href'])
 print(f"{len(bottle_urls)} number of bottles")
 whiskey_list = []
-for u in bottle_urls:
-    r = requests.get(u, headers=headers)
+for b_u in bottle_urls:
+    r = requests.get(b_u, headers=headers)
     soup = BeautifulSoup(r.content, 'lxml')
     name = soup.find('h1', class_="product-main__name").text.strip()
     price = soup.find('p', class_="product-action__price").text.strip()
     description = soup.find('div', class_="product-main__description").text.strip()
     size = soup.find('p', class_="product-main__data").text.strip().split("/")[0].strip()
     abv = soup.find('p', class_="product-main__data").text.strip().split("/")[1].strip()
-    productlink = u
+    productlink = b_u
 
     try:
         if soup.find(class_='flavour-profile__group flavour-profile__group--character') == str("None"):
@@ -91,7 +93,6 @@ for u in bottle_urls:
 
     except:
         style_list = empty_string
-
 
     try:
         rating_str = soup.find('p', class_="review-overview__content").text.strip()
@@ -160,3 +161,4 @@ print("--- %s seconds runtime ---" % (time.time() - start_time))
 # TODO Exception clause to git rid of too broad exception issues
 # TODO Add logic to include Country and Brand to Whiskey List
 # TODO Add gitignore
+# TODO some bottle descriptions do not have text and should be filled with a missing text string
