@@ -21,7 +21,7 @@ source_dict = {}
 print('Aggregating Whiskeys from the following countries...')
 print(list(item.text.strip() for item in producers_item))  # list of whiskey countries
 
-for item in producers_item[:1]:
+for item in producers_item:
     country = item.text.strip()  # country
     for link in item.find_all('a', href=True):
         source = baseurl+link['href']
