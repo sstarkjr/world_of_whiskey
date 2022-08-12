@@ -12,6 +12,9 @@ one for the latest run, and one in a folder with the current timestamp. This fun
 version is always the latest version and the other version will not be overwritten if the structure of the website 
 changes.
 
+<div align="center">
+    <img src="/screenshots/screen1.jpg" width="400px"</img> 
+</div>
 
 # TODO include sample structure of the Whiskey website
 # Include more detail about the project
