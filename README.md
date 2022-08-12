@@ -13,7 +13,7 @@ version is always the latest version and the other version will not be overwritt
 changes.
 
 <div align="center">
-    <img src="/screenshots/screen1.jpg" width="400px"</img> 
+    <img src="/screenshots/screen1.jpg" title="Sample Output" alt="Screenshot of the CSV output opened in excel to show the sample format."></img> 
 </div>
 
 # TODO include sample structure of the Whiskey website
