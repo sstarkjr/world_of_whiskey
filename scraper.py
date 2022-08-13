@@ -4,6 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
+sample_mode = 0
+
 start_time = time.time()
 current_date = time.strftime("%m/%d/%Y")
 current_date_time = time.strftime("%m_%d_%Y_%H_%M")
@@ -24,6 +26,11 @@ producers_item = soup.find_all('li', class_="producers-item")
 source_dict = {}
 print('Aggregating Whiskeys from the following countries...')
 print(list(item.text.strip() for item in producers_item))  # list of whiskey countries
+
+if sample_mode == 1:
+    producers_item = producers_item[:1]
+else:
+    pass
 
 for item in producers_item[:1]:
     country = item.text.strip()  # country
@@ -149,7 +156,6 @@ for i in dir_list:
         df.to_csv(f)
         print(f"file saved to {i}")
 
-
 print("--- %s seconds runtime ---" % (time.time() - start_time))
 
 # https://www.thewhiskyexchange.com/brands/worldwhisky
@@ -163,5 +169,4 @@ print("--- %s seconds runtime ---" % (time.time() - start_time))
 # TODO More commenting
 # TODO Exception clause to git rid of too broad exception issues
 # TODO Add logic to include Country and Brand to Whiskey List
-# TODO Add gitignore
 # TODO some bottle descriptions do not have text and should be filled with a missing text string
