@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
-sample_mode = 0
+sample_mode = 1  # 1 or 0 ; set to 1 if you want to only run a sample to test functionality
 
 start_time = time.time()
 current_date = time.strftime("%m/%d/%Y")
@@ -29,10 +29,12 @@ print(list(item.text.strip() for item in producers_item))  # list of whiskey cou
 
 if sample_mode == 1:
     producers_item = producers_item[:1]
+    print(f"running in sample mode, only scraping whiskeys from {producers_item[0].text.strip()}")
 else:
+    print("Running in full mode")
     pass
 
-for item in producers_item[:1]:
+for item in producers_item:
     country = item.text.strip()  # country
     for link in item.find_all('a', href=True):
         source = baseurl+link['href']
