@@ -16,14 +16,20 @@ found here: [Link to YouTube](https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_cha
     <img src="/screenshots/whiskyexchange.jpg" title="Whiskyexchange.com" alt="Source site Whiskyexchange.com"> 
 </div>
 
-
 <div align="center">
-    <img src="/screenshots/whiskyexchange.jpg" title="Whiskyexchange.com" alt="Source site Whiskyexchange.com">
-[Sample Breadcrumb](/screenshots/breadcrumb.jpg)
+    <img src="/screenshots/americanwhiskey.jpg" title="American Whiskey" alt="American Whiskey"> 
 </div>
 
 <div align="center">
-    <img src="/screenshots/breadcrumb.jpg" title="Whiskyexchange.com" alt="Source site Whiskyexchange.com"> 
+    <img src="/screenshots/breadcrumb.jpg" title="Sample breadcrumb" alt="Breadcrumb sample on Whiskyexchange.com"> 
+</div>
+
+<div align="center">
+    <img src="/screenshots/bulleit.jpg" title="Bulleit" alt="Bulleit"> 
+</div>
+
+<div align="center">
+    <img src="/screenshots/bulleit_detail.jpg" title="Bulleit Detail Page" alt="Bulleit Detail Page"> 
 </div>
 
 The whiskeys are scraped into a pandas DataFrame that is stored as a CSV in the 'output' directory. Two versions are 
