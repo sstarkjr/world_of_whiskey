@@ -15,6 +15,8 @@ headers = {
     AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
 }
 
+print(f"scraping data from {baseurl}")
+
 # Get URLs from base site
 r = requests.get(f'https://www.thewhiskyexchange.com/brands/worldwhisky')
 soup = BeautifulSoup(r.content, 'lxml')
@@ -23,7 +25,7 @@ source_dict = {}
 print('Aggregating Whiskeys from the following countries...')
 print(list(item.text.strip() for item in producers_item))  # list of whiskey countries
 
-for item in producers_item:
+for item in producers_item[:1]:
     country = item.text.strip()  # country
     for link in item.find_all('a', href=True):
         source = baseurl+link['href']
@@ -82,7 +84,8 @@ for b_u in bottle_urls:
             while "Character" in list_of_flavors:
                 list_of_flavors.remove("Character")
                 list_of_flavors = list(filter(None, list_of_flavors))
-    except:
+    except Exception as e:
+        print(e)
         list_of_flavors = empty_string
 
     try:
