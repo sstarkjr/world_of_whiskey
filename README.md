@@ -8,7 +8,7 @@ Scraper.py scrapes "Whiskeys of the World" found on The Whisky Exchange website 
 ## Overview
 This webscraper project is my take John Watson Rooney's webscraping tutorial **"Web Scraping with Python:
 Ecommerce Product Pages. In Depth including troubleshooting"**
-found here: [Link to YouTube](https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney)
+found here: [Link to YouTube](https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney){target="_blank"}
 
 ## Data Source
 <div align="center">
