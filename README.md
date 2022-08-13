@@ -2,14 +2,15 @@
 **author**: Stephen Stark
 
 ## Intro
-This webscraper project is my take John Watson Rooney's webscraping tutorial **"Web Scraping with Python: 
-Ecommerce Product Pages. In Depth including troubleshooting"** 
-found here: [Link to YouTube](https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney)
+Scraper.py scrapes "Whiskeys of the World" found on The Whisky Exchange website \
+[www.thewhiskyexchange.com](https://www.thewhiskyexchange.com/){target="_blank"} into a CSV filed stored in the output directory
 
 ## Overview
-Scraper.py the Whiskeys of the World found on The Whisky Exchange website \
-found here: https://www.thewhiskyexchange.com/
+This webscraper project is my take John Watson Rooney's webscraping tutorial **"Web Scraping with Python:
+Ecommerce Product Pages. In Depth including troubleshooting"**
+found here: [Link to YouTube](https://www.youtube.com/watch?v=nCuPv3tf2Hg&ab_channel=JohnWatsonRooney)
 
+## Data Source
 <div align="center">
     <img src="/screenshots/whiskyexchange.jpg" title="Whiskyexchange.com" alt="Source site Whiskyexchange.com"></img> 
 </div>
