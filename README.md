@@ -4,6 +4,7 @@
 ## Intro
 Scraper.py scrapes "Whiskeys of the World" found on The Whisky Exchange website \
 [www.thewhiskyexchange.com](https://www.thewhiskyexchange.com/){target="_blank"} into a CSV filed stored in the output directory
+Check it out here<a href ="https://www.thewhiskyexchange.com/" target="_blank"> Here </a>
 
 ## Overview
 This webscraper project is my take John Watson Rooney's webscraping tutorial **"Web Scraping with Python:
