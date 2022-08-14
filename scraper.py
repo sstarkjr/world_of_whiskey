@@ -1,11 +1,12 @@
-import os, re
+import os
+import re
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import time
 import logging
 
-sample_mode = 1  # 1 or 0 ; set to 1 for quicker iteration for functionality testing
+sample_mode = 0  # 1 or 0 ; set to 1 for quicker iteration for functionality testing
 
 start_time = time.time()
 current_date = time.strftime("%m/%d/%Y")
@@ -97,8 +98,7 @@ for b_u in bottle_urls:
             while "Character" in list_of_flavors:
                 list_of_flavors.remove("Character")
                 list_of_flavors = list(filter(None, list_of_flavors))
-    except Exception as e:
-        print(e)
+    except AttributeError:
         list_of_flavors = empty_string
 
     try:
@@ -107,26 +107,26 @@ for b_u in bottle_urls:
             style_list.remove("Style")
             style_list = list(filter(None, style_list))
 
-    except:
+    except AttributeError:
         style_list = empty_string
 
     try:
         rating_str = soup.find('p', class_="review-overview__content").text.strip()
         avg_rating = re.findall(r"(\d\.*\d*)", rating_str)[0]
 
-    except:
+    except AttributeError:
         avg_rating = empty_string
 
     try:
         num_rating_str = soup.find('p', class_="review-overview__content").text.strip()
         num_rating = re.findall(r"(\d\.*\d*)", num_rating_str)[1]
 
-    except:
+    except AttributeError:
         num_rating = empty_string
 
     try:
         subtitle = soup.find('ul', class_="product-main__meta").text.strip()
-    except:
+    except AttributeError:
         subtitle = empty_string
 
     whisky = {
@@ -162,7 +162,7 @@ dir_list = [str(current_dir), str(latest_dir)]
 
 for i in dir_list:
     os.makedirs(i, exist_ok=True)
-    with open (i+filename, "w") as f:
+    with open(i+filename, "w") as f:
         df.to_csv(f)
         print(f"file saved to {i}")
 
