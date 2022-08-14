@@ -3,14 +3,15 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import time
+import logging
 
-sample_mode = 1  # 1 or 0 ; set to 1 if you want to only run a sample to test functionality
+sample_mode = 1  # 1 or 0 ; set to 1 for quicker iteration for functionality testing
 
 start_time = time.time()
 current_date = time.strftime("%m/%d/%Y")
 current_date_time = time.strftime("%m_%d_%Y_%H_%M")
 
-empty_string = "None"
+empty_string = "None"  # Fill string when no text response from website
 baseurl = "https://www.thewhiskyexchange.com"
 headers = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) \
@@ -27,6 +28,7 @@ source_dict = {}
 print('Aggregating Whiskeys from the following countries...')
 print(list(item.text.strip() for item in producers_item))  # list of whiskey countries
 
+# Configure sample mode if needed
 if sample_mode == 1:
     producers_item = producers_item[:1]
     print(f"running in sample mode, only scraping whiskeys from {producers_item[0].text.strip()}")
@@ -34,6 +36,7 @@ else:
     print("Running in full mode")
     pass
 
+# Each country has its own set of Whiskeys
 for item in producers_item:
     country = item.text.strip()  # country
     for link in item.find_all('a', href=True):
@@ -46,6 +49,7 @@ for item in producers_item:
 # print(source_dict.keys())
 # print(source_dict.values())
 
+# Each Country
 brand_urls = []
 for v in source_dict.values():
     # print(v)
@@ -142,11 +146,15 @@ for b_u in bottle_urls:
     whiskey_list.append(whisky)
     print("Saving ", whisky['name'])
 
+# Read dictionary into Pandas DataFrame
 df = pd.DataFrame(whiskey_list)
+
+# De-Duplicate DataFrame on a subset of columns
 print("file size prior to de-dupe ", df.shape)
-df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv'], inplace=True)
+df.drop_duplicates(subset=['name', 'price', 'description', 'size', 'abv', 'num_rating'], inplace=True)
 print("file size after de-dupe ", df.shape)
 
+# Folder structure saving location
 current_dir = f"output/{current_date_time}/"
 latest_dir = "output/latest/"
 filename = "whiskey_list.csv"
