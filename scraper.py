@@ -175,6 +175,6 @@ print("--- %s seconds runtime ---" % (time.time() - start_time))
 # https://www.thewhiskyexchange.com/brands/worldwhisky/34/canadian-whisky CANADIAN WHISKEY
 # https://www.thewhiskyexchange.com/brands/worldwhisky/305/rest-of-the-world-whisky REST OF WORLD
 
-# TODO More commenting
 # TODO Add logic to include Country and Brand to Whiskey List
 # TODO some bottle descriptions do not have text and should be filled with a missing text string
+# TODO sample files should have sample added to the filename
